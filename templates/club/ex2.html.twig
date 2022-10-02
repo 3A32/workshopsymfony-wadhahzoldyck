@@ -1,0 +1,120 @@
+<h1>La liste des formations</h1>
+de la classe
+{{ x }}
+dans la salle
+{{ y }}
+
+<p>Question 2,3,4,8 :</p>
+{% if tabFormation is empty %}
+	<p>Pas de formation</p>
+{% else %}
+
+	<table border="1">
+		<tr>
+			<td>ref</td>
+			<td>titre</td>
+			<td>description</td>
+			<td>nombre_p</td>
+		</tr>
+		{% for i in tabFormation %}
+			<tr>
+				<td>{{ i.ref }}</td>
+				<td>{{i.Titre | upper}}</td>
+				<td>{{i.Description}}</td>
+				<td>{{i.nb_participants}}</td>
+			</tr>
+		{% endfor %}
+
+
+	</table>
+{% endif %}
+
+<br/>
+
+
+Nombre de Formation:
+{{ tabFormation|length }}
+
+<p>Question 5 :</p>
+
+<table border="1">
+	<tr>
+		<td>ref</td>
+		<td>titre</td>
+		<td>description</td>
+		<td>nombre_p</td>
+	</tr>
+	{% for i in tabFormation %}
+		{% if i.Description == "formation theorique" %}
+			<tr>
+				<td>{{ i.ref }}</td>
+				<td>{{i.Titre | upper}}</td>
+				<td>{{i.Description}}</td>
+				<td>{{i.nb_participants}}</td>
+			</tr>
+		{% endif %}
+	{% endfor %}
+
+
+</table>
+
+<p>Question 6 :</p>
+
+<table border="1">
+	<tr>
+		<td>ref</td>
+		<td>titre</td>
+		<td>description</td>
+		<td>nombre_p</td>
+	</tr>
+	{% for i in tabFormation %}
+		{% if i.nb_participants == 19  %}
+			<tr>
+				<td>{{ i.ref }}</td>
+				<td>{{i.Titre | upper}}</td>
+				<td>{{i.Description}}</td>
+				<td>{{i.nb_participants}}</td>
+			</tr>
+		{% endif %}
+	{% endfor %}
+
+
+</table>
+
+<p>Question 9 :</p>
+
+{% set somme = 0 %}
+{% for i in tabFormation %}
+	{% set somme = somme + i.nb_participants %}
+
+
+{% endfor %}
+nombre totale de participant :{{somme}}
+
+<table border="1">
+	<tr>
+		<td>ref</td>
+		<td>titre</td>
+		<td>description</td>
+		<td>nombre_p</td>
+		<td>Participer</td>
+
+	</tr>
+	{% for i in tabFormation %}
+		<tr>
+			<td>{{ i.ref }}</td>
+			<td>{{i.Titre | upper}}</td>
+			<td>{{i.Description}}</td>
+			<td>{{i.nb_participants}}</td>
+			<td>
+				{% if i. nb_participants ==0 %}
+					<a href="{{ path('reservation_formation') }}">Participer</a>
+				{% else %}
+					solde out
+				{% endif %}
+			</td>
+		</tr>
+	{% endfor %}
+
+
+</table>
