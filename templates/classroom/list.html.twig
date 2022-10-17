@@ -1,0 +1,22 @@
+<table border="1">
+	<tr>
+		<td>id:</td>
+		<td>name:</td>
+		<td>Editer:</td>
+
+
+	</tr>
+	{% for i in tabClassroom %}
+
+
+		<tr>
+			<td>{{i.id}}</td>
+			<td>{{i.name}}</td>
+			<td>
+				<a href="{{ path('app_updateClassrooms',{'id':i.id}) }}">Editer</a>
+				<a href="{{ path('app_deleteClassrooms',{'id':i.id}) }}">Supprimer</a>
+
+			</td>
+		</tr>
+	</a>
+</td></tr>{% endfor %}</table>
